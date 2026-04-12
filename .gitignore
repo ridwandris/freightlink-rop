@@ -1,0 +1,15 @@
+# Local Environment Secrets
+.env
+
+# Terraform State and Providers
+.terraform.lock.hcl
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfplan
+
+# Python Virtual Environment
+.venv/
+__pycache__/
+*.pyc
