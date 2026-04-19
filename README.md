@@ -59,40 +59,56 @@ Primary business outcomes:
 ### Technical Architecture Diagram
 
 ```mermaid
-flowchart LR
-	subgraph SOURCE[Source Layer]
-		SAP[(SAP HANA OLTP\nInstacart Transactions)]
+%%{init: {'theme':'base','themeVariables':{'fontSize':'31px','fontFamily':'Segoe UI, Arial, sans-serif','lineColor':'#334155','primaryTextColor':'#111827','tertiaryTextColor':'#111827','clusterBkg':'#f8fafc','clusterBorder':'#94a3b8'}}}%%
+flowchart TB
+
+	classDef source fill:#fee2e2,stroke:#b91c1c,stroke-width:2px,color:#111827,font-size:31px;
+	classDef orchestration fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827,font-size:31px;
+	classDef bronze fill:#ffedd5,stroke:#c2410c,stroke-width:2px,color:#111827,font-size:31px;
+	classDef silver fill:#dcfce7,stroke:#15803d,stroke-width:2px,color:#111827,font-size:31px;
+	classDef modeling fill:#ede9fe,stroke:#6d28d9,stroke-width:2px,color:#111827,font-size:31px;
+	classDef consume fill:#fce7f3,stroke:#be185d,stroke-width:2px,color:#111827,font-size:31px;
+
+	subgraph SOURCE[Source<br/>]
+		SAP[(SAP HANA OLTP<br/>Instacart Transactions)]
 	end
 
-	subgraph ORCH[Orchestration Layer]
-		AF[Apache Airflow DAG\nsap_to_s3_bronze_ingestion]
+	subgraph ORCH[Orchestration<br/>]
+		AF[Apache Airflow DAG<br/>sap_to_s3_bronze_ingestion]
 	end
 
-	subgraph BRONZE[Bronze Layer - AWS S3]
-		B1[(bronze_raw/instacart/departments)]
-		B2[(bronze_raw/instacart/products)]
-		B3[(bronze_raw/instacart/orders)]
-		B4[(bronze_raw/instacart/order_products)]
+	subgraph BRONZE[Bronze Layer<br/>]
+		B1[(Raw Departments<br/>CSV Files)]
+		B2[(Raw Products<br/>CSV Files)]
+		B3[(Raw Orders<br/>CSV Files)]
+		B4[(Raw Order Items<br/>CSV Files)]
 	end
 
-	subgraph SILVER[Silver Layer - AWS S3 Parquet]
-		S1[(silver_cleaned/instacart/departments)]
-		S2[(silver_cleaned/instacart/products)]
-		S3[(silver_cleaned/instacart/orders)]
-		S4[(silver_cleaned/instacart/order_products)]
+	subgraph SILVER[Silver Layer<br/>]
+		S1[(Clean Departments<br/>Parquet)]
+		S2[(Clean Products<br/>Parquet)]
+		S3[(Clean Orders<br/>Parquet)]
+		S4[(Clean Order Items<br/>Parquet)]
 	end
 
-	subgraph MODEL[Modeling Layer]
-		FAB[(Microsoft Fabric\nSQL Analytics Endpoint)]
-		DBT[dbt Project\nfreightlink_rop]
+	subgraph MODEL[Modeling<br/>]
+		FAB[(Microsoft Fabric<br/>SQL Analytics Endpoint)]
+		DBT[dbt Project<br/>freightlink_rop]
 		GOLD[(gold_reorder_status view)]
 	end
 
-	subgraph CONSUME[Consumption Layer]
-		BI[Interactive Dashboard\nSupply Chain Stakeholders]
+	subgraph CONSUME[Consumption<br/>]
+		BI[Interactive Dashboard<br/>Supply Chain Stakeholders]
 	end
 
-	SAP -->|Chunked Extract\nPython + hdbcli + boto3| AF
+	style SOURCE fill:#fff7ed,stroke:#ea580c,stroke-width:2px,color:#111827
+	style ORCH fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#111827
+	style BRONZE fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#111827
+	style SILVER fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#111827
+	style MODEL fill:#f5f3ff,stroke:#7c3aed,stroke-width:2px,color:#111827
+	style CONSUME fill:#fdf2f8,stroke:#db2777,stroke-width:2px,color:#111827
+
+	SAP -->|Chunked Extract<br/>Python + hdbcli + boto3| AF
 	AF -->|Raw CSV Landing| B1
 	AF -->|Raw CSV Landing| B2
 	AF -->|Raw CSV Landing| B3
@@ -111,6 +127,15 @@ flowchart LR
 	FAB --> DBT
 	DBT -->|Build Gold View| GOLD
 	GOLD -->|Inventory Status + ROP Signals| BI
+
+	class SAP source
+	class AF orchestration
+	class B1,B2,B3,B4 bronze
+	class S1,S2,S3,S4 silver
+	class FAB,DBT,GOLD modeling
+	class BI consume
+
+	linkStyle default stroke:#334155,stroke-width:2.5px,color:#111827
 ```
 
 ### Medallion Layers
