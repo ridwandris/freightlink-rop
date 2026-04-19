@@ -24,7 +24,7 @@ resource "random_id" "bucket_suffix" {
 # 2. The Core Data Lake Bucket
 resource "aws_s3_bucket" "data_lake" {
   bucket        = "${var.project_name}-datalake-${random_id.bucket_suffix.hex}"
-  force_destroy = true # Allows us to easily delete the bucket later to save money
+  force_destroy = true # Allows to easily delete the bucket later
 }
 
 # 3. Create the Medallion Architecture Folders inside the bucket

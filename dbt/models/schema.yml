@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: fabric_staging
+    schema: dbo
+    tables:
+      - name: stg_departments
+      - name: stg_products
+      - name: stg_orders
+      - name: stg_order_products
+        columns:
+          - name: reordered
+            tests:
+              - not_null
+
+models:
+  - name: gold_reorder_status
+    description: "Final table for Power BI showing product reorder status"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null

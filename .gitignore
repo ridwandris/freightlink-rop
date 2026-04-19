@@ -13,3 +13,20 @@
 .venv/
 __pycache__/
 *.pyc
+
+# Airflow Logs and Database
+logs/
+airflow.db
+airflow.cfg
+airflow.db-shm
+airflow.db-wal
+simple_auth_manager_passwords.json.generated
+
+# dbt ignore
+profiles.yml
+target/
+dbt_packages/
+logs/
+
+.user_settings.json
+.user.yml
