@@ -1,11 +1,11 @@
 # FreightLink Supply Chain Intelligence
-### Multi-Cloud Data Engineering Pipeline using Zero-Copy Architecture
+### Multi-Cloud Data Engineering Pipeline
 
-> **Project:** Data Engineering Zoomcamp 2026 Capstone Project
-> **Name:** Ridwan Iddris  
-> **Role:** Data Engineer / Analytics Engineer 
-> **Date:** April 2026
-> **Credit:** DataTalks.Club 
+- **Project:** Data Engineering Zoomcamp 2026 Capstone Project
+- **Name:** Ridwan Iddris  
+- **Role:** Data Engineer / Analytics Engineer 
+- **Date:** April 2026
+- **Credit:** DataTalks.Club 
 
 ---
 
@@ -95,7 +95,7 @@ In evaluation terms, FreightLink demonstrates that a zero-copy, multi-cloud data
 - Deliver business-facing stockout intelligence with governed transformation quality.
 
 ![Power BI Dashboard](images/Dashboard.jpg)
-*Figure 5: The FreightLink Supply Chain Command Center dashboard.*
+*Figure 5: The Supply Chain dashboard.*
 
 ---
 
