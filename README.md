@@ -10,7 +10,7 @@
 
 ## 1. Problem Statement (Business Question)
 
-### 1.1 Research-Oriented Business Question
+### 1.1 Research Question
 
 FreightLink addresses the following operational analytics question:
 
