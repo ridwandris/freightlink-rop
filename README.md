@@ -1,8 +1,7 @@
 # FreightLink Supply Chain Intelligence
 ### Multi-Cloud Data Engineering Pipeline
 
-- **Project:** Data Engineering Zoomcamp 2026 Capstone Project
-- **Name:** Ridwan Iddris  
+- **Project:** Data Engineering Zoomcamp 2026 Capstone Project 
 - **Role:** Data Engineer / Analytics Engineer 
 - **Date:** April 2026
 - **Credit:** DataTalks.Club 
