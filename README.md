@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Problem Statement (Business Question)
+## 1. Problem Statement
 
 ### 1.1 Research Question
 
