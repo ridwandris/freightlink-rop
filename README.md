@@ -161,7 +161,7 @@ freightlink-rop/
 
 ## 7. Installation and Usage
 
-### 6.1 Prerequisites
+### 7.1 Prerequisites
 
 - Python `3.11` to `<3.13`
 - `uv` (recommended) or `pip`
@@ -171,7 +171,7 @@ freightlink-rop/
 - ODBC Driver 18 for SQL Server (dbt Fabric connectivity)
 - Terraform CLI
 
-### 6.2 Setup
+### 7.2 Setup
 
 1. Install dependencies from project root.
 
@@ -206,7 +206,7 @@ terraform plan
 terraform apply
 ```
 
-### 6.3 Execution
+### 7.3 Execution
 
 1. Optional seed operation (Kaggle -> SAP simulation).
 
